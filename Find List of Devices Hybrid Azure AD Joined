@@ -1,0 +1,5 @@
+# Find All Hybrid Azure AD Joined Devices
+Get-msoldevice -all | Where-Object {$_.DeviceTrustType -eq "Domain Joined"} | select displayname, DeviceOSType, DeviceTrustType | Export-CSV -Path c:\temp\Devices.csv
+
+# Find All Windows 10 Hybrid Azure AD Joined Devices
+Get-msoldevice -all | Where-Object {($_.DeviceTrustType -eq "Domain Joined" -and $_.DeviceOSType -like "Windows 10*")} | select displayname, DeviceOSType, DeviceTrustType | Export-CSV -Path c:\temp\Devices.csv
